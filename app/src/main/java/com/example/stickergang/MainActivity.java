@@ -2,22 +2,34 @@ package com.example.stickergang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.stickergang.Helpers.ActivityHelper;
+import com.example.stickergang.ImageManipulations.BaseActivity;
 import com.github.gabrielbb.cutout.CutOut;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+
+public class MainActivity extends ActivityHelper {
+    @BindView(R.id.button)
+    Button button;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+    protected void viewReady(View v) {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BaseActivity.class));
+            }
+        });
     }
 
-    public void clicked(View v){
-        CutOut.activity().start(this);
+    @Override
+    protected int getRootView() {
+        return R.layout.activity_main;
     }
-
 }

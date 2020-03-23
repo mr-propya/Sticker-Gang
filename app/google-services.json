@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "823558860746",
+    "firebase_url": "https://sticker-gang.firebaseio.com",
+    "project_id": "sticker-gang",
+    "storage_bucket": "sticker-gang.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823558860746:android:5357724a5a3616775b6933",
+        "android_client_info": {
+          "package_name": "com.example.stickergang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823558860746-v3dm0kllquom87s7n8621m19hu8ftvef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stickergang",
+            "certificate_hash": "a03ff465bf0a35aab3c5cb7365e1c57140b1989e"
+          }
+        },
+        {
+          "client_id": "823558860746-b2q9tvhusl7suk2om0dbisdte4ri4d9k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGucU1dqdTlZvUs6wCL1se4FNBU0R35SE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823558860746-b2q9tvhusl7suk2om0dbisdte4ri4d9k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
