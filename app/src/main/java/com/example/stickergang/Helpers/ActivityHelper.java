@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.stickergang.R;
 
 import butterknife.ButterKnife;
 
