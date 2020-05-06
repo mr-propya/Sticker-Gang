@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.stickergang.Helpers.ActivityHelper;
+import com.example.stickergang.Helpers.BitmapHelpers;
 import com.example.stickergang.Helpers.Constants;
 import com.example.stickergang.R;
 import com.github.gabrielbb.cutout.CutOut;
@@ -26,6 +27,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import butterknife.BindView;
@@ -84,10 +86,20 @@ public class BaseActivity extends ActivityHelper {
                     break;
                 case CutOut.CUTOUT_ACTIVITY_REQUEST_CODE:
                     uri = CutOut.getUri(data);
-                    saveInterMediate();
+                    try {
+                        BitmapHelpers helpers = new BitmapHelpers(this,uri);
+                        helpers.trim(true);
+                        previewImage.setImageBitmap(helpers.b);
+                        helpers.saveImage(this,null);
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        showToast("error cropp");
+                    }
+//                    saveInterMediate();
                     break;
             }
-            updatePreview();
+//            updatePreview();
         }else{
             showToast("Some error occurred");
         }
@@ -124,20 +136,23 @@ public class BaseActivity extends ActivityHelper {
 
     void saveInterMediate(){
         ProgressDialog dialog = ProgressDialog.show(this, "Processing image", "Please Wait", true, false);
-        new Thread(() -> {
-            try {
-                InputStream imageStream = getContentResolver().openInputStream(uri);
-                Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                selectedImage = trimBitmap(selectedImage);
-                File f = new File(getExternalFilesDir(null), Constants.ImageConstants.INTERMEDIATE_FILE);
-                showToast(f.getAbsolutePath());
-                FileOutputStream outputStream = new FileOutputStream(f);
-                selectedImage.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-            }catch (Exception e){
-                log("Error saving file");
+
+        try {
+            InputStream imageStream = getContentResolver().openInputStream(uri);
+            Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            if (imageStream != null) {
+                imageStream.close();
             }
-            runOnUiThread(dialog::dismiss);
-        }).start();
+            selectedImage = trimBitmap(selectedImage);
+            File f = new File(getExternalFilesDir(null), Constants.ImageConstants.INTERMEDIATE_FILE);
+            showToast(f.getAbsolutePath());
+            FileOutputStream outputStream = new FileOutputStream(f);
+            selectedImage.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        }catch (Exception e){
+            log("Error saving file");
+        }
+        dialog.dismiss();
+
 
     }
     void updatePreview(){
@@ -149,9 +164,12 @@ public class BaseActivity extends ActivityHelper {
             uri = Uri.fromFile(f);
             InputStream imageStream = getContentResolver().openInputStream(uri);
             Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            if (imageStream != null) {
+                imageStream.close();
+            }
             previewImage.setImageBitmap(selectedImage);
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             showToast("error saving");
         }
