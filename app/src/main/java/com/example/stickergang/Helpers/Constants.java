@@ -8,6 +8,7 @@ public class Constants {
 
         public static final String INTERMEDIATE_FILE = "intermediate.png";
         public static final float IMAGE_PADDING = 1.25f;
+        public static final String EXERNAL_FILE = "ImageAssist";
 
 
     }
@@ -43,10 +44,13 @@ public class Constants {
     }
 
     public static class SqlHelper{
-        public static final String MASTER_DETAILS = "master_detail";
+        public static final String TABLE_MASTER_DETAILS = "master_detail";
+        public static final String TABLE_STICKER_DETAILS = "sticker_detail";
         public static final String STICKER_PACK_IDENTIFIER = "sticker_pack_identifier";
         public static final String STICKER_PACK_NAME = "sticker_pack_name";
-        public static final String STICKER_PACK_ENABLED = "sticker_pack_enabled";
+        public static final String STICKER_INDIVIDUAL_IDENTIFIER = "sticker_individual_identifier";
+        public static final String STICKER_INDIVIDUAL_DISPLAY = "sticker_individual_display";
+        public static final String STICKER_ENABLED = "sticker_pack_enabled";
         public static final String STICKER_PACK_TRAY = "sticker_pack_tray_image";
 
 

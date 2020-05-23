@@ -26,7 +26,7 @@ public class ImageEditActivity extends ActivityHelper {
     PhotoEditorView photoEditorView;
 
     @BindView(R.id.uselessButton)
-    Button useles;
+    Button useless;
 
     @Override
     protected void viewReady(View v) {
@@ -41,7 +41,7 @@ public class ImageEditActivity extends ActivityHelper {
             e.printStackTrace();
         }
 
-        useles.setOnClickListener(new View.OnClickListener() {
+        useless.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PhotoEditor mPhotoEditor = new PhotoEditor.Builder(ImageEditActivity.this, photoEditorView)

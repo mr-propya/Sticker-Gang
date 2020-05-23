@@ -3,6 +3,8 @@ package com.example.stickergang.WAHelpers;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.stickergang.Helpers.Constants;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,20 +23,7 @@ public class ImageAssistants {
     }
     public ImageAssistants(Context c){
         this.c = c;
-        this.externalPath = "ImageAssist";
-    }
-
-    public void saveImage() throws IOException {
-        File f = c.getExternalFilesDir(externalPath);
-        File fNew = new File(f,"abc.txt");
-        fNew.createNewFile();
-        byte[] data1={1,1,0,0};
-        if(fNew.exists())
-        {
-            OutputStream fo = new FileOutputStream(fNew);
-            fo.write(data1);
-            fo.close();
-        }
+        this.externalPath = Constants.ImageConstants.EXERNAL_FILE;
     }
 
     public ArrayList<String> getStickerPackList(){
@@ -60,7 +49,7 @@ public class ImageAssistants {
         return images;
     }
 
-    File getFile(String stickerPack,String fileName){
+    public File getFile(String stickerPack,String fileName){
         File externalFilesDir = c.getExternalFilesDir(externalPath);
         return new File(externalFilesDir,fileName);
     }

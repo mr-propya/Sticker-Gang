@@ -135,4 +135,12 @@ public class BitmapHelpers {
 
         return bitmap;
     }
+
+    public static Bitmap getBitmap(Context c,String path) throws FileNotFoundException {
+        if(path == null){
+            path  = Constants.ImageConstants.INTERMEDIATE_FILE;
+        }
+        return new BitmapHelpers(c,Uri.fromFile(new File(c.getExternalFilesDir(null),path))).b;
+    }
+
 }
